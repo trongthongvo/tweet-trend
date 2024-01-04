@@ -14,6 +14,7 @@ environment {
         stage("build"){
             steps {
                 sh 'ls -la'
+                sh 'echo $PATH'
                  echo "----------- build started ----------"
                 sh '/opt/apache-maven-3.9.6/bin/mvn clean deploy -Dmaven.test.skip=true'
                  echo "----------- build complted ----------"
