@@ -8,18 +8,14 @@ pipeline {
         }
     }
 environment {
-    PATH = "/opt/apache-maven-3.9.6-bin:$PATH"
+    PATH = "/opt/apache-maven-3.9.6/bin:$PATH"
 }
     stages {
-        stage("Clone-code"){
-          steps{
-            git branch: 'main', url: 'https://github.com/ravdy/tweet-trend.git'
-          }
-        }
         stage("build"){
             steps {
+                sh 'ls -la'
                  echo "----------- build started ----------"
-                sh 'mvn clean deploy -Dmaven.test.skip=true'
+                sh '/opt/apache-maven-3.9.6/bin/mvn clean deploy -Dmaven.test.skip=true'
                  echo "----------- build complted ----------"
             }
         }
