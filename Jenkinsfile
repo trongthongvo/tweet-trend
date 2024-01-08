@@ -1,5 +1,5 @@
 def registry = 'https://thongvodevops.jfrog.io'
-def imageName = 'thongvodevops.jfrog.io/artifactory/tweet-trend-docker-local/tweet-trend'
+def imageName = 'thongvodevops.jfrog.io/tweet-trend-docker-local/tweet-trend'
 def version   = '2.1.4'
 pipeline {
     agent {
