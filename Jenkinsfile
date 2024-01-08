@@ -1,5 +1,5 @@
 def registry = 'https://thongvodevops.jfrog.io'
-def imageName = 'valaxy05.jfrog.io/valaxy-docker-local/ttrend'
+def imageName = 'thongvodevops.jfrog.io/artifactory/tweet-trend-docker-local/tweet-trend'
 def version   = '2.1.4'
 pipeline {
     agent {
@@ -77,36 +77,36 @@ environment {
     }
 
 
-    // stage(" Docker Build ") {
-    //   steps {
-    //     script {
-    //        echo '<--------------- Docker Build Started --------------->'
-    //        app = docker.build(imageName+":"+version)
-    //        echo '<--------------- Docker Build Ends --------------->'
-    //     }
-    //   }
-    // }
+    stage(" Docker Build ") {
+      steps {
+        script {
+           echo '<--------------- Docker Build Started --------------->'
+           app = docker.build(imageName+":"+version)
+           echo '<--------------- Docker Build Ends --------------->'
+        }
+      }
+    }
 
-    //         stage (" Docker Publish "){
-    //     steps {
-    //         script {
-    //            echo '<--------------- Docker Publish Started --------------->'  
-    //             docker.withRegistry(registry, 'artfiact-cred'){
-    //                 app.push()
-    //             }    
-    //            echo '<--------------- Docker Publish Ended --------------->'  
-    //         }
-    //     }
-    // }
+            stage (" Docker Publish "){
+        steps {
+            script {
+               echo '<--------------- Docker Publish Started --------------->'  
+                docker.withRegistry(registry, 'artfiact-cred'){
+                    app.push()
+                }    
+               echo '<--------------- Docker Publish Ended --------------->'  
+            }
+        }
+    }
 
-// stage(" Deploy ") {
-//        steps {
-//          script {
-//             echo '<--------------- Helm Deploy Started --------------->'
-//             sh 'helm install ttrend ttrend-1.0.1.tgz'
-//             echo '<--------------- Helm deploy Ends --------------->'
-//          }
-//        }
-//      }  
+stage(" Deploy ") {
+       steps {
+         script {
+            echo '<--------------- Helm Deploy Started --------------->'
+            sh 'helm install ttrend ttrend-1.0.1.tgz'
+            echo '<--------------- Helm deploy Ends --------------->'
+         }
+       }
+     }  
 }
 }
